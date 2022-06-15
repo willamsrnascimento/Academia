@@ -57,9 +57,7 @@ namespace Academia
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
