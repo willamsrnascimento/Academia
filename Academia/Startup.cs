@@ -1,4 +1,5 @@
 using Data;
+using Data.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,8 @@ namespace Academia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AcademiaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AcademiaConnection")));
+
+            services.AddTransient<ICategoriaExercicioRepository, CategoriaExercicioRepository>();
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
