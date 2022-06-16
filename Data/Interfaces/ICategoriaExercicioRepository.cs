@@ -9,6 +9,7 @@ namespace Data.Interfaces
 {
     public interface ICategoriaExercicioRepository : IGenericRepository<CategoriaExercicio>
     {
+        Task<bool> CategoriaExiste(string categoria);
         Task<bool> CategoriaExiste(string categoria, int categoriaExercicioId);
     }
 }

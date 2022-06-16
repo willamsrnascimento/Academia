@@ -15,6 +15,11 @@ namespace Data.Interfaces
             _context = context;
         }
 
+        public async Task<bool> CategoriaExiste(string categoria)
+        {
+            return await _context.CategoriaExercicios.AnyAsync(ce => ce.Nome == categoria);
+        }
+
         public async Task<bool> CategoriaExiste(string categoria, int categoriaExercicioId)
         {
             return await _context.CategoriaExercicios.AnyAsync(ce => ce.Nome == categoria && ce.Id != categoriaExercicioId);

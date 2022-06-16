@@ -22,7 +22,7 @@ namespace Data.Interfaces
             await _context.SaveChangesAsync();
         }
 
-        public async Task Exclir(int id)
+        public async Task Excluir(int id)
         {
             var entity = await this.PegarPorIdAsync(id);
             _context.Set<TEntity>().Remove(entity);

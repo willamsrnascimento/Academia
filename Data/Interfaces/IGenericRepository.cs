@@ -12,6 +12,6 @@ namespace Data.Interfaces
         Task<TEntity> PegarPorIdAsync(int id);
         Task Inserir(TEntity entity);
         Task Atualizar(TEntity entity);
-        Task Exclir(int id);
+        Task Excluir(int id);
     }
 }
