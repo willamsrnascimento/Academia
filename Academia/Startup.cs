@@ -32,7 +32,11 @@ namespace Academia
             services.AddDbContext<AcademiaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AcademiaConnection")));
 
             services.AddTransient<ICategoriaExercicioRepository, CategoriaExercicioRepository>();
-            
+
+            services.AddTransient<IAdministradorRepository, AdministradorRepository>();
+
+            services.AddTransient<IExercicioRepository, ExercicioRepository>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession(options => { options.IdleTimeout = TimeSpan.FromHours(1); });
@@ -69,7 +73,7 @@ namespace Academia
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=CategoriasExercicios}/{action=Index}/{id?}");
+                    pattern: "{controller=Administradores}/{action=Login}/{id?}");
             });
         }
     }
