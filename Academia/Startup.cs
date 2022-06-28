@@ -37,6 +37,8 @@ namespace Academia
 
             services.AddTransient<IExercicioRepository, ExercicioRepository>();
 
+            services.AddTransient<IProfessorRepository, ProfessorRepository>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession(options => { options.IdleTimeout = TimeSpan.FromHours(1); });
