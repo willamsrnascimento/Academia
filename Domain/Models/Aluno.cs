@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Models
@@ -9,7 +10,7 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [StringLength(100, ErrorMessage = "Use menos caracteres.")]
-
+        [Remote("AlunoExiste", "Alunos", AdditionalFields = "Id")]
         public string NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
