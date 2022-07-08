@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.CategoriaExercicio.Nome)
             </td>
             <td>
-                <a onclick="ExibirModal(@item.Id, @ViewData["AlunoId"])" class="btn-small green darken-2">Adicionar</a> 
+                <a onclick="ExibirModal(@item.Id, @ViewData["FichaId"])" class="btn-small light-blue darken-2">Adicionar</a> 
             </td>
         </tr>
 }
@@ -91,55 +91,55 @@
                 if ((Number.isInteger(frequencia) && frequencia > 0)
                     && (Number.isInteger(repeticoes) && repeticoes > 0)
                     && (Number.isInteger(carga) && carga > 0)) {
-                        
-                        $.ajax({
-                            method: "POST",
-                            url: "/Exercicios/AdicionarExercicio",
-                            data: {
-                                id: id,
-                                frequencia: frequencia,
-                                repeticoes : repeticoes,
-                                carga: carga,
-                                fichaId: fichaId
-                            },
-                            success: function(data) {
-                                if (data) {
-                                    $("#modal1").modal("close");
-                                    $("#modal1").modal("destroy");
-                                    $(".modal").modal("");
-                                    $("btnConfirmar").unbind('click');
-                                    $("#Frequencia").val('');
-                                    $("#Repeticoes").val('');
-                                    $("#Carga").val('');
-                                    M.toast({ html: 'Exercício inserido com sucesso.' });
-                                }
-                                else {
-                                    $("#modal1").modal("close");
-                                    $("#modal1").modal("destroy");
-                                    $(".modal").modal("");
-                                    $("btnConfirmar").unbind('click');
-                                    $("#Frequencia").val('');
-                                    $("#Repeticoes").val('');
-                                    $("#Carga").val('');
-                                    M.toast({ html: 'Exercício já consta na ficha.' });
-                                }
+
+                    $.ajax({
+                        method: "POST",
+                        url: "/Exercicios/AdicionarExercicio",
+                        data: {
+                            id: id,
+                            frequencia: frequencia,
+                            repeticoes: repeticoes,
+                            carga: carga,
+                            fichaId: fichaId
+                        },
+                        success: function(data) {
+                            if (data) {
+                                $("#modal1").modal("close");
+                                $("#modal1").modal("destroy");
+                                $(".modal").modal("");
+                                $("btnConfirmar").unbind('click');
+                                $("#Frequencia").val('');
+                                $("#Repeticoes").val('');
+                                $("#Carga").val('');
+                                M.toast({ html: 'Exercício inserido com sucesso.' });
                             }
-                        });
+                            else {
+                                $("#modal1").modal("close");
+                                $("#modal1").modal("destroy");
+                                $(".modal").modal("");
+                                $("btnConfirmar").unbind('click');
+                                $("#Frequencia").val('');
+                                $("#Repeticoes").val('');
+                                $("#Carga").val('');
+                                M.toast({ html: 'Exercício já consta na ficha.' });
+                            }
+                        }
+                    });
 
-                    }
-                    else {
-                        $("#modal1").modal("close");
-                        $("#modal1").modal("destroy");
-                        $(".modal").modal("");
-                        $("btnConfirmar").unbind('click');
-                        $("#Frequencia").val('');
-                        $("#Repeticoes").val('');
-                        $("#Carga").val('');
-                        M.toast({ html: 'Informações inválidas.' });
-                    }
+                }
+                else {
+                    $("#modal1").modal("close");
+                    $("#modal1").modal("destroy");
+                    $(".modal").modal("");
+                    $("btnConfirmar").unbind('click');
+                    $("#Frequencia").val('');
+                    $("#Repeticoes").val('');
+                    $("#Carga").val('');
+                    M.toast({ html: 'Informações inválidas.' });
+                }
 
-                
-            })
+
+            });
         }
 
     </script>

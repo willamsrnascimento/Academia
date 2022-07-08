@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Domain.Models;
 using Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Academia.Controllers
 {
+    [Authorize]
     public class ExerciciosController : Controller
     {
         private readonly IExercicioRepository _exercicioRepository;
@@ -39,7 +41,7 @@ namespace Academia.Controllers
 
         public async Task<IActionResult> AdicionarExercicio(int id, int frequencia, int repeticoes, int carga, int fichaId)
         {
-            if (await _listaExercicioRepository.ExercicioExisteNaFicha(id))
+            if (await _listaExercicioRepository.ExercicioExisteNaFicha(id, fichaId))
             {
                 return Json(false);
             }
@@ -116,10 +118,10 @@ namespace Academia.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
             await _exercicioRepository.Excluir(id);
-            return RedirectToAction(nameof(Index));
+            return Json("Exercício excluído com sucesso.");
         }
 
         public async Task<JsonResult> ExercicioExiste(string nome, int id)

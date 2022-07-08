@@ -27,9 +27,9 @@ namespace Data.Interfaces
             return await _academiaContext.Fichas.AnyAsync(f => f.Nome == nome && f.Id != id);
         }
 
-        public async Task<Ficha> PegarFichaPeloAlunoId(int id)
+        public async Task<Ficha> PegarFichaAlunoPeloId(int id)
         {
-            return await _academiaContext.Fichas.Include(f => f.Aluno).FirstOrDefaultAsync(f => f.AlunoId == id);
+            return await _academiaContext.Fichas.Include(f => f.Aluno).FirstOrDefaultAsync(f => f.Id == id);
         }
 
         public async Task<IEnumerable<Ficha>> PegarTodasFichasPeloAlunoId(int id)

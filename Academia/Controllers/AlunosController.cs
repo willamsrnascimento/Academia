@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Domain.Models;
 using Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Academia.Controllers
 {
+    [Authorize]
     public class AlunosController : Controller
     {
         private readonly IAlunoRepository _alunoRepository;
@@ -83,10 +85,10 @@ namespace Academia.Controllers
 
         // POST: Alunos/Delete/5
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
             await _alunoRepository.Excluir(id);
-            return RedirectToAction(nameof(Index));
+            return Json("Aluno excluído com sucesso.");
         }
 
         public async Task<JsonResult> AlunoExiste(string nome, int id)

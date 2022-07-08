@@ -8,6 +8,6 @@ namespace Data.Interfaces
 {
     public interface IListaExercicioRepository : IGenericRepository<ListaExercicio>
     {
-        Task<bool> ExercicioExisteNaFicha(int id);
+        Task<bool> ExercicioExisteNaFicha(int id, int fichaId);
     }
 }

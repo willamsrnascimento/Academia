@@ -11,9 +11,11 @@ using Data.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Academia.Controllers
 {
+    [Authorize]
     public class ProfessoresController : Controller
     {
         private readonly IProfessorRepository _professorRepository;
@@ -107,10 +109,10 @@ namespace Academia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
             await _professorRepository.Excluir(id);
-            return RedirectToAction(nameof(Index));
+            return Json("Professor excluído com sucesso.");
         }
 
         public async Task<JsonResult> ProfessorExiste(string nome, int id)

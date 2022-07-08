@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Domain.Models;
 using Data.Interfaces;
+using Rotativa.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Academia.Controllers
 {
+    [Authorize]
     public class FichasController : Controller
     {
         private readonly IAlunoRepository _alunoRepository;
@@ -32,13 +35,24 @@ namespace Academia.Controllers
         public async Task<IActionResult> Details(int id)
         {
 
-            var ficha = await _fichaRepository.PegarFichaPeloAlunoId(id);
+            var ficha = await _fichaRepository.PegarFichaAlunoPeloId(id);
             if (ficha == null)
             {
                 return NotFound();
             }
 
             return View(ficha);
+        }
+
+        public async Task<IActionResult> VisualizarPDF(int id)
+        {
+            var ficha = await _fichaRepository.PegarFichaAlunoPeloId(id);
+            if (ficha == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("PDF", ficha) { FileName = "Ficha.PDF" };
         }
 
         // GET: Fichas/Create

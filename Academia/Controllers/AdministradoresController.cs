@@ -1,6 +1,7 @@
 ﻿using Academia.ViewModels;
 using Data.Interfaces;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -59,6 +60,7 @@ namespace Academia.Controllers
             return RedirectToAction("Index", "Alunos");
         }
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();

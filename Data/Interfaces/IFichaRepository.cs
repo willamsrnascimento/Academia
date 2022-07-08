@@ -9,7 +9,7 @@ namespace Data.Interfaces
     public interface IFichaRepository : IGenericRepository<Ficha>
     {
         Task<IEnumerable<Ficha>> PegarTodasFichasPeloAlunoId(int id);
-        Task<Ficha> PegarFichaPeloAlunoId(int id);
+        Task<Ficha> PegarFichaAlunoPeloId(int id);
         Task<bool> FichaExiste(string nome);
         Task<bool> FichaExiste(string nome, int id);
     }

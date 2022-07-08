@@ -16,9 +16,9 @@ namespace Data.Interfaces
             _academiaContext = academiaContext;
         }
 
-        public async Task<bool> ExercicioExisteNaFicha(int id)
+        public async Task<bool> ExercicioExisteNaFicha(int id, int fichaId)
         {
-            return await _academiaContext.ListaExercicios.AnyAsync(l => l.ExercicioId == id);
+            return await _academiaContext.ListaExercicios.AnyAsync(l => l.ExercicioId == id && l.FichaId == fichaId);
         }
     }
 }
