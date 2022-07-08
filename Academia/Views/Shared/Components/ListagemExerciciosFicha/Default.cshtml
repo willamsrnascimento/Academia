@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Domain.Models.ListaExercicio>
+
+@{
+    ViewData["Title"] = "Lista de Exercícios";
+}
+
+
+<div>
+    <h5>@ViewData["Title"]</h5>
+    <hr />
+
+    <div>
+
+        <table class="table hover striped highlight centered">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Exercicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Frequencia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Repeticoes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Carga)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ficha)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Exercicio.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Frequencia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Repeticoes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Carga)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ficha.Nome)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

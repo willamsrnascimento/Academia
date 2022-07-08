@@ -15,16 +15,53 @@ namespace Academia.Controllers
     {
         private readonly IExercicioRepository _exercicioRepository;
         private readonly ICategoriaExercicioRepository _categoriaExercicioRepository;
+        private readonly IListaExercicioRepository _listaExercicioRepository;
 
-        public ExerciciosController(IExercicioRepository exercicioRepository, ICategoriaExercicioRepository categoriaExercicioRepository)
+        public ExerciciosController(IExercicioRepository exercicioRepository, ICategoriaExercicioRepository categoriaExercicioRepository, IListaExercicioRepository listaExercicioRepository)
         {
             _exercicioRepository = exercicioRepository;
             _categoriaExercicioRepository = categoriaExercicioRepository;
+            _listaExercicioRepository = listaExercicioRepository;
         }
 
         public async Task<IActionResult> Index()
         {
             return View(await _exercicioRepository.PegarTodos());
+        }
+
+        public async Task<IActionResult> Listagem(int fichaId, int alunoId)
+        {
+            ViewData["FichaId"] = fichaId;
+            ViewData["AlunoId"] = alunoId;
+
+            return View(await _exercicioRepository.PegarTodos());
+        }
+
+        public async Task<IActionResult> AdicionarExercicio(int id, int frequencia, int repeticoes, int carga, int fichaId)
+        {
+            if (await _listaExercicioRepository.ExercicioExisteNaFicha(id))
+            {
+                return Json(false);
+            }
+
+            ListaExercicio listaExercicio = new ListaExercicio
+            {
+                ExercicioId = id,
+                Frequencia = frequencia,
+                Repeticoes = repeticoes,
+                Carga = carga,
+                FichaId = fichaId
+            };
+
+            if (ModelState.IsValid)
+            {
+                await _listaExercicioRepository.Inserir(listaExercicio);
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
         }
 
         public IActionResult Create()

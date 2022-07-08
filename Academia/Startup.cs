@@ -43,6 +43,10 @@ namespace Academia
 
             services.AddTransient<IAlunoRepository, AlunoRepository>();
 
+            services.AddTransient<IFichaRepository, FichaRepository>();
+
+            services.AddTransient<IListaExercicioRepository, ListaExercicioRepository>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession(options => { options.IdleTimeout = TimeSpan.FromHours(1); });

@@ -1,0 +1,38 @@
+﻿@model Domain.Models.Aluno
+
+@{
+    ViewData["Title"] = "Dados do Aluno";
+}
+
+
+<div>
+    <h5>@ViewData["Title"]</h5>
+    <hr />
+    <div class="row">
+        <div class="col s4>">
+            <p><strong>Nome : </strong>@Model.NomeCompleto</p>
+        </div>
+
+        <div class="col s4>">
+            <p><strong>Idade : </strong>@Model.Idade</p>
+        </div>
+
+        <div class="col s4>">
+            <p><strong>Peso : </strong>@Model.Peso</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s4>">
+            <p><strong>Objetivo : </strong>@Model.Objetivo.Nome</p>
+        </div>
+
+        <div class="col s4>">
+            <p><strong>Descrição : </strong>@Model.Objetivo.Descricao</p>
+        </div>
+
+        <div class="col s4>">
+            <p><strong>Professor : </strong>@Model.Professor.Nome</p>
+        </div>
+    </div>
+</div>

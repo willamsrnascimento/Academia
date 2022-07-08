@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +11,7 @@ namespace Domain.Models
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [StringLength(50, ErrorMessage = "Use menos caracteres.")]
+        [Remote("FichaExiste", "Fichas", AdditionalFields = "Id")]
         public string Nome { get; set; }
 
         public DateTime DataCadastro { get; set; }
